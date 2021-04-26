@@ -1,18 +1,21 @@
 import styled from 'styled-components';
+import config from './../config';
+
+const bgImage = config.baseURl + '/images/login-background.jpg';
 
 const Login = (props) => {
     return(
         <Container>
             <Content>
                 <CTA>
-                    <CTALogoOne src="/images/cta-logo-one.svg" alt="Hi"/>
+                    <CTALogoOne src={config.baseURl +"/images/cta-logo-one.svg"} alt="Hi"/>
                     <SignUp>Get All There</SignUp>
                     <Description>
                         Get Premier Access to Raya and the Last Dragon for
                         an additional fee with Disney+ subscription. As of 26/04/21, the price of Disney+ and
                         The Disney Bundle will increase by Rs.100.
                     </Description>
-                    <CTALogoTwo src="/images/cta-logo-two.png" alt='' />
+                    <CTALogoTwo src={config.baseURl +"/images/cta-logo-two.png"} alt='' />
                 </CTA>
                 <BgImage />
             </Content>
@@ -48,7 +51,7 @@ const BgImage = styled.div`
     z-index: -1;
     position: absolute;
     background-size: cover;
-    background-image: url("images/login-background.jpg");
+    background-image: url(${bgImage});
 `;
 
 const CTA = styled.div`
