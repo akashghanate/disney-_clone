@@ -2,9 +2,10 @@
 
 ## Powered by:
 - React
-- Redux
+- Redux (Used to store User Info)
+- Firebase
 - Styled Components
-- React Router (Router helps to go to fro between pages without having to refresh)
+- React Router (Router helps to go to-fro between pages without having to refresh)
 
 In the project directory, you can run:
 
