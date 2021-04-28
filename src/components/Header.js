@@ -1,24 +1,48 @@
 import styled from 'styled-components';
 import { auth, provider } from '../firebase';
 import config from './../config';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {setUserLoginDetails ,selectUserName,selectUserPhoto} from '../features/user/userSlice'
 
 const Header = (props) => {
 
+    // dispatch is used to store the value in redux and selector to retrieve data
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const username = useSelector(selectUserName);
+    const userPhoto = useSelector(selectUserPhoto);
+
     const handleAuth = () => {
-        auth.signInWithPopup(provider).then((result)=>{
-            console.log(result);
-        }).catch((error)=>{
-            alert(error.message)
-        })
-    }
+        auth
+          .signInWithPopup(provider)
+          .then((result) => {
+            setUser(result.user);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+    };
+
+    const setUser = (user) => {
+        dispatch(setUserLoginDetails({
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+        }))
+    };
 
     return(
         <Nav>
             <Logo>
                 <img src={config.baseURl +"/images/logo.svg"} alt="Disney+" />
             </Logo>
-            <NavMenu>
+            {
+                !username ?
+                <Login onClick={handleAuth} >Login</Login>
+                :
+                <>
+                <NavMenu>
                 <a href={config.baseURl + "/home"}>
                     <img src={config.baseURl +"/images/home-icon.svg"} alt="home"/>
                     <span>HOME</span>
@@ -44,7 +68,9 @@ const Header = (props) => {
                   <span>SERIES</span>
                 </a>
             </NavMenu>
-            <Login onClick={handleAuth} >Login</Login>
+            <UserImage src={userPhoto} alt={username}/>
+            </>
+        }
         </Nav>
     )
 };
@@ -161,6 +187,12 @@ const Login = styled.a`
         color: black;
         border: transparent;
     }
+`;
+
+const UserImage = styled.img`
+    height: 70%;
+    border: 1px solid white;
+    border-radius: 50%;
 `;
 
 export default Header;
