@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import config from '../config';
 import ImgSlider from './ImgSlider';
+import Viewers from './Viewers';
 
 const bgImg = config.baseURl+'/images/home-background.png';
+
 const Home = (props) => {
     return(
         <Container>
             <ImgSlider />
+            <Viewers/>
         </Container>
     )
 };
