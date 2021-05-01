@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import config from '../config';
 import ImgSlider from './ImgSlider';
+import Recommands from './Recommands';
 import Viewers from './Viewers';
 
 const bgImg = config.baseURl+'/images/home-background.png';
@@ -10,6 +11,7 @@ const Home = (props) => {
         <Container>
             <ImgSlider />
             <Viewers/>
+            <Recommands/>
         </Container>
     )
 };
