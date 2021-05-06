@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import config from '../config'
+import config from '../config';
 
 
-const Recommands = (props) => {
+const Originals = (props) => {
     return(
         <Container>
-            <h4>Recommanded for you</h4>
+            <h4>Originals</h4>
             <Content>
                 <Wrap>
-                    <Link to=''>
+                    <Link to='/'>
                          <img src={config.baseURl + "/images/viewers-disney.png"} alt=""/>
                     </Link>
                 </Wrap>
@@ -78,8 +78,8 @@ const Wrap = styled.div`
     transform: scale(1.05);
     border-color: rgba(249, 249, 249, 0.8);
   }
-
+  
 `;
 
 
-export default Recommands;
+export default Originals;
