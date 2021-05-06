@@ -6,10 +6,53 @@ import Originals from './Originals';
 import Recommands from './Recommands';
 import Trending from './Trending';
 import Viewers from './Viewers';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import db from '../firebase';
+import {setMovies} from '../features/movie/movieSlice';
+import {selectUserName} from '../features/user/userSlice';
 
 const bgImg = config.baseURl+'/images/home-background.png';
 
 const Home = (props) => {
+    const dispatch = useDispatch();
+    const userName = useSelector(selectUserName);
+    let recommand = [];
+    let newDisney = [];
+    let original = [];
+    let trending = [];
+
+    useEffect(() => {
+        db.collection('movies').onSnapshot((snapshot) => {
+            snapshot.docs.map((doc) => {
+                switch (doc.data().type) {
+                    case 'recommend':
+                        recommand = [...recommand,{id: doc.id, ...doc.data()}]
+                        // console.log(recommand);
+                        break;
+                    case 'new':
+                        newDisney = [...newDisney,{id: doc.id, ...doc.data()}]
+                        break;
+                    case 'original':
+                        original = [...original,{id: doc.id, ...doc.data()}]
+                        break;
+                    case 'trending':
+                        trending = [...trending,{id: doc.id, ...doc.data()}]
+                        break;
+                    default:
+                        break;
+                }
+            });
+            
+            dispatch(setMovies({
+                recommand: recommand,
+                newDisney: newDisney,
+                original: original,
+                trending: trending,
+            }));
+        });
+            
+    }, [userName])
     return(
         <Container>
             <ImgSlider />
