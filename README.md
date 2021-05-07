@@ -1,4 +1,5 @@
 # Disney+ Clone
+A UI/UX clone of Disney+ Application using ReactJs + Redux + Firebase
 
 ## Powered by:
 - React
@@ -18,3 +19,20 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### Demo [click](https://disneyplus-clone-cec31.web.app/)
+
+### Screenshots
+
+- Login Screen
+    ![img](/src/assests/s1.png)
+
+- Homepage With Silder
+    ![img](/src/assests/s2.png)
+
+- Homepage With Viewers
+    ![img](/src/assests/s3.png)
+
+- Homepage Recommendations/orginals/trending cards
+    ![img](/src/assests/s4.png)
+
+- Detail Page
+    ![img](/src/assests/s5.png)
